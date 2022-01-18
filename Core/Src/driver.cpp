@@ -34,7 +34,7 @@ void driver::setPowerRight(double power){
 	}else {
 		this->setDirRight(TOWARD_RIGHT);
 	}
-	uint16_t alpha = power*65535;
+	uint16_t alpha = power*10000;
 	this->genPWMRight(alpha);
 }
 void driver::setPowerLeft(double power){
@@ -49,7 +49,7 @@ void driver::setPowerLeft(double power){
 	}else {
 		this->setDirLeft(TOWARD_LEFT);
 	}
-	uint16_t alpha = power*65535;
+	uint16_t alpha = power*10000;
 	this->genPWMLeft(alpha);
 }
 
@@ -93,8 +93,8 @@ void driver::stopRightMot(){
 }
 
 long driver::getRightEncTicks(){
-
-	return __HAL_TIM_GET_COUNTER(htim2)>>2;
+	long val = __HAL_TIM_GET_COUNTER(htim2)>>2;
+	return val;
 }
 long driver::getLeftEncTicks(){
 	return __HAL_TIM_GET_COUNTER(htim3)>>2;

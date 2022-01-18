@@ -29,16 +29,20 @@ void wheel::setPower(double power){
 double wheel::getLinearSpeed(clock* Clock){
 	long lastTicks = ticks;
 	long actualTicks;
-
+	char msg[50];
 	if (this->position == LEFT) {
 		actualTicks = Driver->getLeftEncTicks();
+		sprintf(msg, "left wheel: %d \n", actualTicks);
 	}else if(this->position == RIGHT) {
 		actualTicks = Driver->getRightEncTicks();
+		sprintf(msg, "right wheel: %d \n", actualTicks);
 	}
+	//this->Driver->printf(msg);
 	long dTicks = actualTicks - lastTicks;
 
 	if (abs(dTicks) > maxTickPerDt) {
-		dTicks = ((dTicks>=0)?1:-1)*(65535>>2) -  dTicks;
+		int maxTicks = 65535; //65535
+		dTicks = ((dTicks>=0)?1:-1)*(maxTicks>>2) -  dTicks;
 	}
 	ticks = actualTicks;
 	return ((float) dTicks) / ((float) Clock->getTimeDt()) * K * 1000.0; // k m per meterS

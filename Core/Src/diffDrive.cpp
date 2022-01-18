@@ -12,7 +12,7 @@ diffDrive::diffDrive() {
 
 }
 void diffDrive::getDiffSpeed(velocity* speed) {
-	speed->vr = speed->vr + speed->w * this->motDis;
-	speed->vl = speed->vl + speed->w * this->motDis;
+	speed->vr = (speed->v + speed->w * this->motDis)/2;
+	speed->vl = (speed->v - speed->w * this->motDis)/2;
 }
 

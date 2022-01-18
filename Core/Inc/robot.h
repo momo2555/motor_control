@@ -19,7 +19,8 @@
 typedef enum {
 	MOTION_CONTROLED,
 	DIFFERRENTIAL_DRIVED,
-	SPEED_ASSERV
+	SPEED_ASSERV,
+	OPEN_LOOP
 
 } MODE;
 
@@ -54,6 +55,10 @@ public:
 	 * Met à jour tous les paramètre de la classe robot (et sous classes de robot) à jour avec les valeurs enregistrés dans la mémoire.
 	 */
 	void getFromMemory();
+	void setVelocityCons(float linearSpeed, float angularSpeed);
+	void setDiffSpeedCons(float rightSpeed, float leftSpeed);
+	void setPosCons(float x, float y, float theta);
+	void setOpenLoopCons(float rightSpeed, float leftSpeed);
 private:
 	memory* Memory;
 	wheel* RightWheel;
@@ -68,6 +73,7 @@ private:
 	coor position;
 	velocity speed;
 	diffDrive* DiffDrive;
+	bool testDebug;
 
 };
 

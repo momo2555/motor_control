@@ -14,7 +14,7 @@
 #define POS_STRUCT
 typedef struct {
 	float theta, x, y ;
-	float v, w;
+	float v, w, vl, vr;
 } consign;
 typedef struct {
 	float x, y, theta;

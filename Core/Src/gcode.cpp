@@ -9,7 +9,7 @@
 
 gcode::gcode(driver* driverCtrl) {
 	// TODO Auto-generated constructor stub
-	aint =  "GgMmNnSs";
+	aint =  "GgMmNnSsPp";
 	aflt  = "XxYyAaBbCcRrDd";
 	this->driverCtrl = driverCtrl;
 }
@@ -38,7 +38,7 @@ void gcode::readInstruction(char* stringCmd) {
 		strcpy(temp, &(stringCmd[next]));
 
 		if(isInt(cmd)) {
-			i = strtol(temp, &endptr, 10); //convert to int
+			i = strtol(temp, &endptr, 10); //convert to long
 			if(temp==endptr)i=0.0;
 		}else {
 			f = strtof(temp, &endptr); //convert to float
@@ -60,13 +60,12 @@ void gcode::readInstruction(char* stringCmd) {
 }
 
 void gcode::addCmd(char val, float cont1, long cont2) {
-	Gcmd* lastCmd = listCmd;
-	this->listCmd = (Gcmd*) malloc(sizeof(Gcmd)*(nCmd+1));
-	for(int i=0;i<nCmd;i++)this->listCmd[i] = lastCmd[i];
-	listCmd[nCmd].value = val;
-	listCmd[nCmd].content1 = cont1;
-	listCmd[nCmd].content2= cont2;
-	nCmd++;
+	if(nCmd < 20) {
+		listCmd[nCmd].value = val;
+		listCmd[nCmd].content1 = cont1;
+		listCmd[nCmd].content2= cont2;
+		nCmd++;
+	}
 
 }
 bool gcode::get(char val, long* cont) {

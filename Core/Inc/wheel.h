@@ -12,10 +12,15 @@
 typedef enum {
 	LEFT, RIGHT
 } WHEEL_POSITION;
-
+/**
+ * Class qui gére les roues (envoie de la puissance et gestion des encodeurs)
+ */
 class wheel {
 public:
-
+	/**
+	 * Constructeur de la classe wheel
+	 * @param pos:WHEEL_POSITION position de la roue (droite ou gauche)
+	 */
 	wheel(WHEEL_POSITION pos, driver* driver);
 	void setPower(double power);
 	double getLinearSpeed(clock* Clock); //dt en seconde

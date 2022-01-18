@@ -20,7 +20,7 @@ public:
 	float getKp(){return Kp;}
 	void setKp(float Kp){this->Kp = Kp;}
 
-	float getConsign(float Err, float Cons, clock* clock);
+	float getConsign(float Err, clock* clock);
 private:
 	float Ki, Kp, Kd;
 	double integral;

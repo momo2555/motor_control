@@ -14,7 +14,7 @@ pid::pid() {
 
 }
 
-float pid::getConsign(float Err, float Cons, clock* clock) {
+float pid::getConsign(float Err,  clock* clock) {
 
 	float dt = clock->getTimeDt();
 	float proportional = this->Kp * Err;
